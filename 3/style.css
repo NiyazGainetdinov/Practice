@@ -1,0 +1,21 @@
+body {
+	background: #f9e933; 
+	font-family: 'Droid sans';
+	font-size: 100%;
+}
+
+header, main, footer { 
+	min-width: 855px;
+}
+
+header { 
+	background: white; 
+	overflow: auto;
+	margin-bottom: 3px;
+	padding: 10px;
+}
+
+main { 
+	background: white; 
+	overflow: auto;
+	padding: 20px;
