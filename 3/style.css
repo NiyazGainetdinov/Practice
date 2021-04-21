@@ -26,3 +26,33 @@ main {
 	background: white; 
 	overflow: auto;
 	padding: 20px;
+}
+main .main_block {
+	float: left;
+	width: 570px;
+}
+main .image {
+	float: right;	
+	width: 285px;
+}
+
+main .faq {
+	float: left;
+	width: 855px;
+}
+
+main .faq p {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+main h2 {
+	font-size: 120%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+main h3 {
+	margin-top: 10px;
+	margin-bottom: 5px;	
+}
