@@ -1,25 +1,20 @@
 var main = function () {
 "use strict";
-$(".tabs a:nth-код для этого элемента может выглядеть вот так:child(1)").on("click", function () {
-/span></a>/span></a> 
+var makeTabActive = function (tabNumber) {
+var tabSelector = ".tabs a:nth-child(" + tabNumber + ") span";
 $(".tabs span").removeClass("active");
-/span></a>/span></a> 
-$(".tabs a:nth-код для этого элемента может выглядеть вот так:child(1) span").addClass("active");
-/span></a>/span></a> 
-$("main .content").empty();
-/span></a>/span></a> 
+$(tabSelector).addClass("active");
+};
+$(".tabs a:nth-код для этого элемента может выглядеть вот так:child(1)").on("click", function () {
+makeTabActive(1);
 return false;
 });
 $(".tabs a:nth-код для этого элемента может выглядеть вот так:child(2)").on("click", function () {
-$(".tabs span").removeClass("active");
-$(".tabs a:nth-код для этого элемента может выглядеть вот так:child(2) span").addClass("active");
-$("main .content").empty();
+makeTabActive(2);
 return false;
 });
 $(".tabs a:nth-код для этого элемента может выглядеть вот так:child(3)").on("click", function () {
-$(".tabs span").removeClass("active");
-$(".tabs a:nth-код для этого элемента может выглядеть вот так:child(3) span").addClass("active");
-$("main .content").empty();
+makeTabActive(3);
 return false;
 });
 };
