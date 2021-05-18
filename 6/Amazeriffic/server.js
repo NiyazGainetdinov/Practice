@@ -21,5 +21,5 @@ app.post("/todos", function (req, res) {
 	console.log(newToDo);
 	toDos.push(newToDo);
 	// отправляем простой объект
-	res.json({"message":"Вы размещаетеся на сервере!"});
+	res.json({"message":"Вы размещаетесь на сервере!"});
 });
