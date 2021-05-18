@@ -1,7 +1,12 @@
 var main = function (toDoObjects) {
 	"use strict";
 	// как main имеет доступ к списку задач!
-	$(document).ready(function () {
+	var toDos = toDoObjects.map(function (toDo) {
+		// просто возвращаем описание этой задачи
+		return toDo.description;
+	});
+	// сейчас весь старый код должен работать как раньше!
+	$("document").ready( function(){
 	$.getJSON("todos.json", function (toDoObjects) {
 	// вызов функции main с аргументом в виде объекта toDoObjects 
 		main(toDoObjects);
