@@ -1,3 +1,5 @@
+"use strict";
+
 var organizeByTags = function (toDoObjects) { 
 	
 	console.log("organizeByTags called");
@@ -42,15 +44,9 @@ var main = function (toDoObjects) {
 	});
 	// сейчас весь старый код должен работать как раньше!
 	$("document").ready( function(){
-	$.getJSON("todos.json", function (toDoObjects) {
-	// вызов функции main с аргументом в виде объекта toDoObjects 
-		main(toDoObjects);
-	});
-
-	$("document").ready( function(){
 
 	$(".tabs a span").toArray().forEach(function (element) { 
-	// создаем обработчик щелчков для этого элемента 
+		// создаем обработчик щелчков для этого элемента 
 		$(element).on("click", function () {
 			// поскольку мы используем версию элемента jQuery,
 			// нужно создать временную переменную,
@@ -59,7 +55,7 @@ var main = function (toDoObjects) {
 			$(".tabs a span").removeClass("active"); 
 			$(element).addClass("active");
 			$("main .content").empty();
-
+			$("main .photos").empty();
 			if ($element.parent().is(":nth-child(1)")) { 
 				for (var i = toDos.length-1; i > -1; i--) { 
 					$(".content").append($("<li>").text(toDos[i]));
@@ -69,25 +65,26 @@ var main = function (toDoObjects) {
 				toDos.forEach(function (todo) { 
 					$(".content").append($("<li>").text(todo));
 				});
-			}
+			} 
 			else if ($element.parent().is(":nth-child(3)")) { 
-					// ЭТО КОД ДЛЯ ВКЛАДКИ ТЕГИ 
-					console.log("Щелчок на вкладке Теги");
-					// organizeByTag(toDoObjects);
-					var organizedByTag = organizeByTags(toDoObjects);
-					
-					 organizedByTag.forEach(function (tag) { 
-						var $tagName = $("<h3>").text(tag.name), 
-						$content = $("<ul>"); 
-						tag.toDos.forEach(function (description) { 
-							var $li = $("<li>").text(description); 
-							$content.append($li);
-						});
-						$("main .content").append($tagName); 
-						$("main .content").append($content);
+				// ЭТО КОД ДЛЯ ВКЛАДКИ ТЕГИ 
+				console.log("Щелчок на вкладке Теги");
+				// organizeByTag(toDoObjects);
+				var organizedByTag = organizeByTags(toDoObjects);
+				
+				 organizedByTag.forEach(function (tag) { 
+					var $tagName = $("<h3>").text(tag.name), 
+					$content = $("<ul>"); 
+					tag.toDos.forEach(function (description) { 
+						var $li = $("<li>").text(description); 
+						$content.append($li);
 					});
+					$("main .content").append($tagName); 
+					$("main .content").append($content);
+				});
 
-			}  
+
+			} 
 			else if ($element.parent().is(":nth-child(4)")) { 
 				var $input = $("<input>").addClass("description"), 
 					$inputLabel = $("<p>").text("Новая задача: "),
@@ -110,13 +107,19 @@ var main = function (toDoObjects) {
 			}
 			else if ($element.parent().is(":nth-child(5)")) { 
 				var js = document.createElement('script');
-				js.src = "zadanie_app.js";
+				js.src = "flickr.js";
 				document.body.appendChild(js);
 			}
 			return false;
 		})
 	})
-
 	$(".tabs a:first-child span").trigger("click");
 
-})
+};	
+
+$(document).ready(function () {
+	$.getJSON("todos.json", function (toDoObjects) {
+	// вызов функции main с аргументом в виде объекта toDoObjects 
+		main(toDoObjects);
+	});
+});
