@@ -18,3 +18,24 @@ app.get("/todos.json", function (req, res) {
 		res.json(toDos);
 	});
 });
+app.post("/todos", function (req, res) {
+	console.log(req.body);
+	var newToDo = new ToDo({"description":req.body.description,
+		"tags":req.body.tags});
+	newToDo.save(function (err, result) {
+		if (err !== null) {
+			console.log(err);
+			res.send("ERROR");
+		} else {
+			// клиент ожидает, что будут возвращены все задачи,
+			// поэтому для сохранения совместимости сделаем дополнительный запрос
+			ToDo.find({}, function (err, result) {
+				if (err !== null) {
+					// элемент не был сохранен
+					res.send("ERROR");
+				}
+				res.json(result);
+			});
+		}
+	});
+});
