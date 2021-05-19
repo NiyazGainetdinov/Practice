@@ -12,3 +12,9 @@ var ToDo = mongoose.model("ToDo", ToDoSchema);
 http.createServer(app).listen(3000);
 app.use(express.urlencoded({ extended: true }));
 mongoose.connect('mongodb://localhost/amazeriffic');
+app.get("/todos.json", function (req, res) {
+	ToDo.find({}, function (err, toDos) {
+		// не забудьте о проверке на ошибки
+		res.json(toDos);
+	});
+});
